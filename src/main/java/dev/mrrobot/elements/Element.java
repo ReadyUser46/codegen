@@ -6,19 +6,24 @@ import org.openqa.selenium.By;
 @Data
 public abstract class Element {
 
-    private Action action;
-    private String locatorStr;
-    private By locator;
+    protected Action action;
+    private String locator;
+    private String name;
 
-    public Element(String locatorStr) {
-        this.locatorStr = locatorStr;
+    private String cteCode;
+    private String methodCode;
+
+
+    public Element(String locator, String name) {
+        this.locator = locator;
+        this.name = name;
     }
 
-    protected void getLocator(String locatorStr) {
-        locator = locatorStr.contains("//") ? By.xpath(locatorStr) : By.id(locatorStr);
+    public By getByLocator() {
+        return locator.contains("//") ? By.xpath(locator) : By.id(locator);
     }
 
-    public abstract Action setAction();
+    public abstract void applyAction();
 
 
 }
