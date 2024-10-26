@@ -3,29 +3,21 @@ package dev.mrrobot.elements;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static dev.mrrobot.elements.Type.BUTTON;
-import static dev.mrrobot.elements.Type.INPUT;
 
 @Getter
 @AllArgsConstructor
 public enum Action {
 
-    CLICK(BUTTON, "Clicking on button: '%s'", "click"),
-    INPUT_TEXT(INPUT, "Entering text in '%s': '{}'", "typeText"),
-    INPUT_TEXT_SLOWLY(INPUT, "Entering text in '%s': {}", "typeTextSlowly"),
-    INPUT_TEXT_SNEAKY(INPUT, "Entering text in '%s': {}", "typeTextSneaky"),
+    CLICK_REGULAR(ElementType.BUTTON, ActionType.CLICK, "@Step(\"Clicking on button: 'placeholder'\")", "click(%s);"),
+    INPUT_TEXT_REGULAR(ElementType.INPUT, ActionType.INPUT, "@Step(\"Entering text in '%s': '{0}'\")", "typeText(%s);"),
+    INPUT_TEXT_SLOWLY(ElementType.INPUT, ActionType.INPUT, "@Step(\"Entering text in '%s': {0}\")", "typeTextSlowly(%s);"),
+    INPUT_TEXT_SNEAKY(ElementType.INPUT, ActionType.INPUT, "@Step(\"Entering text in '%s': {0}\")", "typeTextSneaky(%s);"),
 
-    UNDEFINED(Type.UNDEFINED, "-", "-");
+    UNDEFINED(ElementType.UNDEFINED, ActionType.UNDEFINED, "-", "-");
 
-    private final Type type;
+    private final ElementType elementType;
+    private final ActionType actionType;
     private final String step;
     private final String seleniumMethod;
-
-    public static Action getItem(String name) {
-        for (Action i : Action.values()) {
-            if (i.getStep().equals(name)) return i;
-        }
-        return UNDEFINED;
-    }
 
 }

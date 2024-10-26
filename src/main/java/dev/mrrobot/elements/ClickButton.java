@@ -1,8 +1,8 @@
 package dev.mrrobot.elements;
 
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-@EqualsAndHashCode(callSuper = true)
+@Getter
 public class ClickButton extends Element {
 
     private final boolean hardwait;
@@ -13,10 +13,11 @@ public class ClickButton extends Element {
         super(locator, name);
         this.hardwait = hardwait;
         this.dinamicwait = dinamicwait;
+        applyAction();
     }
 
     @Override
     public void applyAction() {
-        action = Action.CLICK;
+        action = Action.CLICK_REGULAR;
     }
 }

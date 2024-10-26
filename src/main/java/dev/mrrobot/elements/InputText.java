@@ -1,8 +1,8 @@
 package dev.mrrobot.elements;
 
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-@EqualsAndHashCode(callSuper = true)
+@Getter
 public class InputText extends Element {
 
     private final boolean trigger;
@@ -14,14 +14,14 @@ public class InputText extends Element {
         this.trigger = trigger;
         this.sneaky = sneaky;
         this.slowly = slowly;
+        applyAction();
 
     }
-
 
     @Override
     public void applyAction() {
         if (slowly) action = Action.INPUT_TEXT_SLOWLY;
         if (sneaky) action = Action.INPUT_TEXT_SNEAKY;
-        else action = Action.INPUT_TEXT;
+        else action = Action.INPUT_TEXT_REGULAR;
     }
 }

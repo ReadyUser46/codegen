@@ -1,24 +1,29 @@
 package dev.mrrobot.runner;
 
-import dev.mrrobot.elements.Element;
+import dev.mrrobot.config.Config;
+import dev.mrrobot.services.CodeConstructor;
 import dev.mrrobot.services.Collector;
-
-import java.util.List;
 
 public class Main {
 
 
     public static void main(String[] args) {
 
+
+        Config.loadProperties();
+
         Collector.getInstance()
                 .definePageName("DatosClientePage")
-                .enableAllureSteps(true)
                 .addButtonClick("aceptar", "accept", true, true)
                 .addButtonClick("//*[@title='minor']", "minorBtn", false)
-                .addInputText("surname1", "surname1", true, false, false)
+                .addInputText("surname1", "surname1", true)
+                .addInputTextSneaky("surname2", "surname2", true)
                 .addInputTextSlowly("iban", "iban", true);
 
-        List<Element> elements = Collector.getInstance().getElements();
+
+        CodeConstructor.execute(Collector.getInstance().getElements());
+
+
 
 
     }

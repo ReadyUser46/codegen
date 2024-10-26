@@ -14,7 +14,6 @@ public class Collector {
     private static Collector instance;
     private String pagename;
     private String repositoryname;
-    private boolean allureSteps;
     private List<Element> elements;
 
     private Collector() {
@@ -31,11 +30,6 @@ public class Collector {
         return this;
     }
 
-    public Collector enableAllureSteps(boolean allureSteps) {
-        this.allureSteps = allureSteps;
-        return this;
-    }
-
     public Collector addButtonClick(String locator, String name, boolean dinamicwait, boolean hardwait) {
         elements.add(new ClickButton(locator, name, dinamicwait, hardwait));
         return this;
@@ -45,8 +39,13 @@ public class Collector {
         return addButtonClick(locator, name, dinamicwait, false);
     }
 
-    public Collector addInputText(String locator, String name, boolean trigger, boolean sneaky, boolean slowly) {
-        elements.add(new InputText(locator, name, trigger, sneaky, slowly));
+    public Collector addInputText(String locator, String name, boolean trigger) {
+        elements.add(new InputText(locator, name, trigger, false, false));
+        return this;
+    }
+
+    public Collector addInputTextSneaky(String locator, String name, boolean trigger) {
+        elements.add(new InputText(locator, name, trigger, true, false));
         return this;
     }
 

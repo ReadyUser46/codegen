@@ -1,7 +1,6 @@
 package dev.mrrobot.elements;
 
 import lombok.Data;
-import org.openqa.selenium.By;
 
 @Data
 public abstract class Element {
@@ -19,11 +18,11 @@ public abstract class Element {
         this.name = name;
     }
 
-    public By getByLocator() {
-        return locator.contains("//") ? By.xpath(locator) : By.id(locator);
+    public String getByLocator() {
+        return locator.contains("//") ? String.format("By.xpath(%s)", locator) : String.format("By.id(%s)", locator);
     }
 
-    public abstract void applyAction();
+    protected abstract void applyAction();
 
 
 }

@@ -5,14 +5,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum Type {
+public enum ActionType {
 
+    CLICK,
     INPUT,
-    INPUT_SELECT,
-    BUTTON,
-    DDM,
-    RB,
-    CB,
+    SELECT,
     UNDEFINED;
 
 
